@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="Brackeys Game Jam 2025"
+run/main_scene="uid://c0bqakbareh7b"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Game="*res://Script/General/game.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/collapse_folders/plugin.cfg")
 
 [rendering]
 
