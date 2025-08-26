@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clj8hji1qrobx"
-path.s3tc="res://.godot/imported/texture_02.png-e3422e13e69cb4285b604b4c05fbdc2c.s3tc.ctex"
+uid="uid://bek6kxx7nh6ry"
+path.s3tc="res://.godot/imported/Animated Prototype Character Sprite sheet-0.png-783e171be497db4c6b227fd8418ab392.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Asset/Import/kenney_prototype-textures/PNG/Orange/texture_02.png"
-dest_files=["res://.godot/imported/texture_02.png-e3422e13e69cb4285b604b4c05fbdc2c.s3tc.ctex"]
+source_file="res://Asset/Import/Animated Prototype Character/Animated Prototype Character Sprite sheet-0.png"
+dest_files=["res://.godot/imported/Animated Prototype Character Sprite sheet-0.png-783e171be497db4c6b227fd8418ab392.s3tc.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn815ebghdi4m"]
+[gd_scene load_steps=21 format=3 uid="uid://cn815ebghdi4m"]
 
 [ext_resource type="Script" uid="uid://bb2mwbjs8muv7" path="res://Script/Character/player.gd" id="1_ojo44"]
 [ext_resource type="Texture2D" uid="uid://dtli0m15h4m7q" path="res://Asset/Import/Animated Prototype Character/Animated Prototype Character/Base Character/idle (1).png" id="2_801yk"]
@@ -65,9 +65,58 @@ animations = [{
 "texture": ExtResource("13_0wtsp")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"run",
 "speed": 5.0
 }]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l12si"]
+transparency = 4
+diffuse_mode = 1
+albedo_texture = ExtResource("2_801yk")
+clearcoat_roughness = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_t23lb"]
+material = SubResource("StandardMaterial3D_l12si")
+size = Vector2(5, 5)
+
+[sub_resource type="Animation" id="Animation_l12si"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_801yk"), ExtResource("3_l12si"), ExtResource("4_t23lb"), ExtResource("5_v0bjn")]
+}
+
+[sub_resource type="Animation" id="Animation_t23lb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_801yk")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0bjn"]
+_data = {
+&"RESET": SubResource("Animation_t23lb"),
+&"idle": SubResource("Animation_l12si")
+}
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ojo44")
@@ -77,6 +126,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183701, 0)
 shape = SubResource("BoxShape3D_l0tos")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0, 0)
+visible = false
 sprite_frames = SubResource("SpriteFrames_g21l0")
 animation = &"idle"
-frame_progress = 0.0491591
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0, 0)
+cast_shadow = 2
+mesh = SubResource("QuadMesh_t23lb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_v0bjn")
+}

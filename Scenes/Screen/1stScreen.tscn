@@ -1,12 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0bqakbareh7b"]
+[gd_scene load_steps=11 format=3 uid="uid://c0bqakbareh7b"]
 
 [ext_resource type="PackedScene" uid="uid://dbcmbda6sqel8" path="res://Scenes/stand.tscn" id="1_1gjm1"]
-[ext_resource type="Texture2D" uid="uid://s4gmgad8vjdx" path="res://Asset/Import/kenney_prototype-textures/PNG/Orange/texture_01.png" id="2_aymxm"]
+[ext_resource type="Script" uid="uid://be04cbwpe13sm" path="res://Script/Screen.gd" id="1_aymxm"]
 [ext_resource type="PackedScene" uid="uid://cn815ebghdi4m" path="res://Scenes/Character/player.tscn" id="2_xyxi4"]
+[ext_resource type="Texture2D" uid="uid://clj8hji1qrobx" path="res://Asset/Import/kenney_prototype-textures/PNG/Orange/texture_02.png" id="3_aymxm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1gjm1"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_top_color = Color(0.20078, 0.356046, 1, 1)
+sky_horizon_color = Color(0.943035, 0.568376, 0.164391, 1)
+sky_curve = 0.172305
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sun_angle_max = 24.9
+sun_curve = 0.289782
 
 [sub_resource type="Sky" id="Sky_aymxm"]
 sky_material = SubResource("ProceduralSkyMaterial_1gjm1")
@@ -17,40 +22,50 @@ sky = SubResource("Sky_aymxm")
 tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aymxm"]
-size = Vector3(50, 1, 50)
+size = Vector3(50, 0, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgq1n"]
-albedo_texture = ExtResource("2_aymxm")
-albedo_texture_force_srgb = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aymxm"]
+albedo_texture = ExtResource("3_aymxm")
 
-[sub_resource type="BoxMesh" id="BoxMesh_mg34j"]
-material = SubResource("StandardMaterial3D_hgq1n")
-size = Vector3(50, 1, 50)
+[sub_resource type="QuadMesh" id="QuadMesh_hgq1n"]
+material = SubResource("StandardMaterial3D_aymxm")
+size = Vector2(50, 50)
 
 [node name="1st screen" type="Node3D"]
+script = ExtResource("1_aymxm")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hgq1n")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.25215, 0.866094, 0.431628, 0.955715, -0.292835, 0.0292824, 0.151757, 0.405129, -0.901577, 1.67986, 17.929, 0)
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.25215, 0.866094, 0.431627, 0.943492, -0.319155, 0.0892355, 0.215042, 0.384736, -0.897627, 1.67986, 17.929, 0)
+light_color = Color(1, 0.769411, 0.394693, 1)
+light_energy = 1.755
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.937889, 0.346936, 0, -0.346936, 0.937889, 0, 6.116, 9.077)
+[node name="View" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 9.54812, 14.2083)
 fov = 78.2
 size = 7.722
 
 [node name="Stand" parent="." instance=ExtResource("1_1gjm1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.62094, 2.83559, -8.1056)
+transform = Transform3D(1.00147, 0, 0, 0, 1.00147, 0, 0, 0, 1.00147, -4.62094, 2.46848, -8.1056)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0005, 0)
 shape = SubResource("BoxShape3D_aymxm")
 
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0)
+visible = false
+transparent = false
+texture = ExtResource("3_aymxm")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_mg34j")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_hgq1n")
 
 [node name="Player" parent="." instance=ExtResource("2_xyxi4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12179, 3.50245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12787, 3.502)

@@ -27,3 +27,4 @@ enabled=PackedStringArray("res://addons/collapse_folders/plugin.cfg")
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/positional_shadow/atlas_size=8192

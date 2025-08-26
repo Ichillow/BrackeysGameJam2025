@@ -9,3 +9,7 @@ func _ready():
 
 func _process(_delta):
     pass
+
+func clicked():
+    print("Stand clicked!")
+    get_tree().change_scene_to_file(stand_path)
