@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cn815ebghdi4m"]
+[gd_scene load_steps=30 format=3 uid="uid://cn815ebghdi4m"]
 
 [ext_resource type="Script" uid="uid://bb2mwbjs8muv7" path="res://Script/Character/player.gd" id="1_ojo44"]
 [ext_resource type="Texture2D" uid="uid://dtli0m15h4m7q" path="res://Asset/Import/Animated Prototype Character/Animated Prototype Character/Base Character/idle (1).png" id="2_801yk"]
@@ -79,6 +79,33 @@ clearcoat_roughness = 0.0
 material = SubResource("StandardMaterial3D_l12si")
 size = Vector2(5, 5)
 
+[sub_resource type="Animation" id="Animation_t23lb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_801yk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
 [sub_resource type="Animation" id="Animation_l12si"]
 resource_name = "idle"
 length = 1.2
@@ -97,25 +124,61 @@ tracks/0/keys = {
 "values": [ExtResource("2_801yk"), ExtResource("3_l12si"), ExtResource("4_t23lb"), ExtResource("5_v0bjn")]
 }
 
-[sub_resource type="Animation" id="Animation_t23lb"]
-length = 0.001
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t23lb"]
+transparency = 1
+albedo_texture = ExtResource("6_kaplj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0bjn"]
+transparency = 1
+albedo_texture = ExtResource("7_4jgyf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kaplj"]
+transparency = 1
+albedo_texture = ExtResource("8_6ija8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jgyf"]
+transparency = 1
+albedo_texture = ExtResource("9_yvi0q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ija8"]
+transparency = 1
+albedo_texture = ExtResource("10_p4osx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvi0q"]
+transparency = 1
+albedo_texture = ExtResource("11_sy4ft")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4osx"]
+transparency = 1
+albedo_texture = ExtResource("12_fjhd6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sy4ft"]
+transparency = 1
+albedo_texture = ExtResource("13_0wtsp")
+
+[sub_resource type="Animation" id="Animation_fjhd6"]
+resource_name = "run"
+length = 1.6
+loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:mesh:material:albedo_texture")
+tracks/0/path = NodePath(".:material_override")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_801yk")]
+"values": [SubResource("StandardMaterial3D_t23lb"), SubResource("StandardMaterial3D_v0bjn"), SubResource("StandardMaterial3D_kaplj"), SubResource("StandardMaterial3D_4jgyf"), SubResource("StandardMaterial3D_6ija8"), SubResource("StandardMaterial3D_yvi0q"), SubResource("StandardMaterial3D_p4osx"), SubResource("StandardMaterial3D_sy4ft")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v0bjn"]
 _data = {
 &"RESET": SubResource("Animation_t23lb"),
-&"idle": SubResource("Animation_l12si")
+&"idle": SubResource("Animation_l12si"),
+&"run": SubResource("Animation_fjhd6")
 }
 
 [node name="Player" type="CharacterBody3D"]
