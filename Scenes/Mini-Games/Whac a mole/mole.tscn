@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://cidwsqls2d12w"]
+
+[ext_resource type="Texture2D" uid="uid://cphdo8yecli82" path="res://Asset/Import/Whac a mole/Mole.png" id="1_frv62"]
+[ext_resource type="Texture2D" uid="uid://bt1x8lrm6y3rx" path="res://Asset/Import/Whac a mole/MoleHit.png" id="2_rlh80"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlh80"]
+transparency = 1
+albedo_texture = ExtResource("1_frv62")
+
+[sub_resource type="QuadMesh" id="QuadMesh_hpw1i"]
+material = SubResource("StandardMaterial3D_rlh80")
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwtva"]
+transparency = 1
+albedo_texture = ExtResource("2_rlh80")
+
+[sub_resource type="Animation" id="Animation_suk11"]
+resource_name = "Death"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeshInstance3D:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_nwtva")]
+}
+
+[sub_resource type="Animation" id="Animation_p6qhd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeshInstance3D:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u71wi"]
+_data = {
+&"Death": SubResource("Animation_suk11"),
+&"RESET": SubResource("Animation_p6qhd")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwtva"]
+
+[node name="Mole" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 2
+mesh = SubResource("QuadMesh_hpw1i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+root_node = NodePath("../../CollisionShape3D")
+libraries = {
+&"": SubResource("AnimationLibrary_u71wi")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_nwtva")

@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3 uid="uid://ujywkm1xfjjv"]
+
+[ext_resource type="PackedScene" uid="uid://cidwsqls2d12w" path="res://Scenes/Mini-Games/Whac a mole/mole.tscn" id="1_fh2jp"]
+[ext_resource type="PackedScene" uid="uid://b3w0y1daul4pf" path="res://Scenes/Mini-Games/Whac a mole/hammer.tscn" id="2_2r8e0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fh2jp"]
+sky_top_color = Color(0.20078, 0.356046, 1, 1)
+sky_horizon_color = Color(0.943035, 0.568376, 0.164391, 1)
+sky_curve = 0.172305
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sun_angle_max = 24.9
+sun_curve = 0.289782
+
+[sub_resource type="Sky" id="Sky_aymxm"]
+sky_material = SubResource("ProceduralSkyMaterial_fh2jp")
+
+[sub_resource type="Environment" id="Environment_2r8e0"]
+background_mode = 2
+sky = SubResource("Sky_aymxm")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2r8e0"]
+size = Vector3(10, 10, 10)
+
+[node name="Whac-A-Mole" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2r8e0")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.25215, 0.866094, 0.431627, 0.951989, -0.302034, 0.0499183, 0.1736, 0.398317, -0.90067, 1.67986, 17.929, 0)
+light_color = Color(1, 0.769411, 0.394693, 1)
+light_energy = 1.755
+shadow_enabled = true
+
+[node name="View" type="Camera3D" parent="."]
+transform = Transform3D(0.993813, 0.0476418, -0.100333, -3.41465e-09, 0.903335, 0.428935, 0.11107, -0.426281, 0.897746, -0.480984, 8.98764, 9.13579)
+projection = 1
+fov = 78.2
+size = 7.722
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+size = Vector3(10, 10, 10)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, 3)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 3)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 0)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, 0)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -3)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="StaticBody3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -3)
+operation = 2
+radius = 1.0
+height = 4.743
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_2r8e0")
+
+[node name="Mole" parent="." instance=ExtResource("1_fh2jp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.66903, -0.508083)
+
+[node name="Hammer" parent="." instance=ExtResource("2_2r8e0")]
+transform = Transform3D(-0.253522, 0, 0.96733, 0, 1, 0, -0.96733, 0, -0.253522, 3.86559, 8.00697, 5.86442)

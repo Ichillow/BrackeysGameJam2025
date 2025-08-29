@@ -70,8 +70,7 @@ animations = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l12si"]
-transparency = 4
-diffuse_mode = 1
+transparency = 1
 albedo_texture = ExtResource("2_801yk")
 clearcoat_roughness = 0.0
 
